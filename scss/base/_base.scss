@@ -31,3 +31,9 @@ input, button{
     font-family: inherit;
     font-size: inherit;
 }
+
+.spaceBetween{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

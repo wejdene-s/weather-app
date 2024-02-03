@@ -15,25 +15,29 @@
     <link rel="stylesheet" href="css/main.min.css">
 </head>
 <body>
-    <main>
-        <section id="search">
-            <form id="search-form">
-                <input type="text" class="fade" name="search" aria-label="Enter a city name" placeholder="Enter a city name">
-                <button>
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>
-        </section>
-        <section id="current-weather">
-            <div id="location">
-                <i class="fa-solid fa-location-dot"></i>
-                <span>Sousse</span>
-            </div>
-            <div id="temperature">10°</div>
-            <div id="description">It's Cloudy <i class="fa-solid fa-cloud"></i></div>
-        </section>
-        <section id="more"></section>
-        <section id="daily-forecast"></section>
+    <main class="spaceBetween">
+        <div>
+            <section id="search">
+                <form id="search-form">
+                    <input type="text" class="fade" name="search" aria-label="Enter a city name" placeholder="Enter a city name">
+                    <button>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </section>
+            <section id="current-weather">
+                <div id="location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Sousse</span>
+                </div>
+                <div id="temperature">10°</div>
+                <div id="description">It's Cloudy <i class="fa-solid fa-cloud"></i></div>
+            </section>
+        </div>
+        <div>  
+            <section id="parameters"></section>
+            <section id="daily-forecast"></section>
+        </div>  
     </main>
     
 </body>
