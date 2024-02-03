@@ -1,0 +1,13 @@
+#current-weather{
+    padding-left: 1rem;
+    #location{
+        letter-spacing: 0.1rem;
+    }
+    #temperature{
+        font-size: 8rem;
+        @include maxw(576px){
+            font-size: 5rem;
+        }
+        
+    }
+}

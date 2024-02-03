@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Wejdene Soussi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <title>Weather App</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/main.min.css">
+</head>
+<body>
+    <main>
+        <section id="search">
+            <form id="search-form">
+                <input type="text" class="fade" name="search" aria-label="Enter a city name" placeholder="Enter a city name">
+                <button>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+        </section>
+        <section id="current-weather">
+            <div id="location">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Sousse</span>
+            </div>
+            <div id="temperature">10°</div>
+            <div id="description">It's Cloudy <i class="fa-solid fa-cloud"></i></div>
+        </section>
+        <section id="more"></section>
+        <section id="daily-forecast"></section>
+    </main>
+    
+</body>
+</html>
