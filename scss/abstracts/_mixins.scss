@@ -11,3 +11,16 @@
         @content;
     }
 }
+
+@mixin minh($size){
+    @media only screen and (min-height : $size) {
+        @content;
+        
+    }
+}
+
+@mixin backgroundImg ($link){
+    background-image: url($link);
+    background-repeat: no-repeat;
+    background-size:cover;
+}
