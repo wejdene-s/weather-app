@@ -1,18 +1,23 @@
-#current-weather{
-    padding-left: 1rem;
-    #location{
-        letter-spacing: 0.1rem;
-    }
-    #temperature{
-        font-size: 8rem;
-        @include maxw(576px){
-            font-size: 5rem;
+#current-forecast{
+    height: calc(100vh - 70px);
+    #current-weather{
+        padding-left: 1rem;
+        #location{
+            letter-spacing: 0.1rem;
         }
-        
-    }#description{
-        i{
-            font-size: 2rem;
-            margin-left: 0.5rem;
+        #temperature{
+            font-size: 8rem;
+            @include maxw(576px){
+                font-size: 5rem;
+            }
+            
+        }#description{
+            i{
+                font-size: 2rem;
+                margin-left: 0.5rem;
+            }
         }
     }
 }
+
+

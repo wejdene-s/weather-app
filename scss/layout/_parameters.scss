@@ -1,0 +1,42 @@
+#parameters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-radius: $border;
+    text-align: center;
+    background-color : rgba(0, 0, 0, 0.3);
+/*     @include minw(576px){
+        font-size: 1.2rem;
+    } */
+    div{
+        margin-bottom: 1rem;
+        @include minh(700px){
+            margin-top: 1rem;
+        }
+        .icon{
+            font-size: 0.9rem;
+            @include minw(576px){
+                font-size: 1.2rem;
+            }
+        }
+
+        
+    }
+    #sunrise, #sunset{
+        .icon{
+            .stacked{
+                position: relative;
+                .fa-sun{
+                    position: absolute;
+                    left: 20%;
+                    top: 5%;
+                    font-size: 0.6rem;
+
+                }
+                .fa-mountain{
+                    z-index: 9999;
+                    
+                }
+            }
+        }
+    }
+}

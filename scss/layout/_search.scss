@@ -1,14 +1,19 @@
 #search{
-    width: 90%;
-    margin: 1rem auto;
+    border-radius: $border;
+    padding-bottom: 1rem;
     #search-form{
+        width: 90%;
+        margin: 0 auto;
+        padding: 1rem;
         position: relative;
         input{
+            position: absolute;
             width: 80%;
             border-radius: $border;
             padding: 0.5rem;
             height: 1.7rem;
-            display: none; 
+            color: #000;
+            display: none;
         }
         button{
             position:absolute;
@@ -19,7 +24,6 @@
             border-radius: $border;
             background-color: transparent;
             border: 3px solid $fontColor;
-            color: $fontColor;
         }
         button:hover{
             cursor:pointer;
