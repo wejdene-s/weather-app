@@ -1,1 +1,30 @@
+#daily-forecast{
+    background-color: $backgroundColor;
+    margin-top: 1rem;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    color: $fontColor;
+    border-radius: $border;
+    #title{
+        text-align: center;
+        padding: 1rem;
+        font-weight: bold;
+        letter-spacing: 0.1rem;
+    }
+    .flex{
+        text-align: center;
+        margin: 1rem;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        @include maxw(576px){
+            overflow-x: scroll;
+            font-size: 0.7rem;
+        }
+        div{
+            margin: 0.5rem;
+            height: 100px;
+            
+        }
+    }
 
+}

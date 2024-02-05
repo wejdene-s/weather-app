@@ -3,17 +3,14 @@
     grid-template-columns: repeat(3, 1fr);
     border-radius: $border;
     text-align: center;
-    background-color : rgba(0, 0, 0, 0.3);
-/*     @include minw(576px){
-        font-size: 1.2rem;
-    } */
+    background-color : $backgroundColor;
     div{
         margin-bottom: 1rem;
         @include minh(700px){
             margin-top: 1rem;
         }
         .icon{
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             @include minw(576px){
                 font-size: 1.2rem;
             }

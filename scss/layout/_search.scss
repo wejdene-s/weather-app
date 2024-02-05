@@ -6,7 +6,11 @@
         margin: 0 auto;
         padding: 1rem;
         position: relative;
+        @include maxw(576px){
+            width: 100%;
+        }
         input{
+            font-size: 1rem;
             position: absolute;
             width: 80%;
             border-radius: $border;
@@ -14,6 +18,10 @@
             height: 1.7rem;
             color: #000;
             display: none;
+            @include maxw(576px){
+                font-size: 0.7rem;
+                width: 70%;
+            }
         }
         button{
             position:absolute;
@@ -23,7 +31,10 @@
             height: 40px;
             border-radius: $border;
             background-color: transparent;
-            border: 3px solid $fontColor;
+            border: 5px solid $fontColor;
+            @include maxw(500px){
+                left: 80%;
+            }
         }
         button:hover{
             cursor:pointer;
