@@ -13,9 +13,13 @@
     <title>Weather App</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="css/main.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="js/dataFunctions.js" type="module"></script>
+
+
 </head>
 <body>
-    <header id="search">
+    <header id="search" class="fade-in">
         <form id="search-form">
             <input type="text" class="fade" name="search" aria-label="Enter a city name" placeholder="Enter a city name">
             <button>
@@ -23,7 +27,7 @@
             </button>
         </form>
     </header>
-    <main>
+    <main class="fade-in">
         <div id="current-forecast" class="spaceBetween">
             <section id="current-weather">
                 <div id="location">
@@ -53,10 +57,9 @@
                         Sunset</p>
                 </div>
                 <div id="cloud-coverage">
-        
                     <p class="value"></p>
                     <p class="icon"><i class="fa-solid fa-cloud"></i>
-                        Cloud coverage</p>
+                        Cloud Coverage</p>
                 </div>
                 <div id="wind">
                     <p class="value"></p>
