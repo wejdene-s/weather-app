@@ -13,6 +13,7 @@
     <title>Weather App</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="js/dataFunctions.js" type="module"></script>
 
@@ -40,40 +41,31 @@
             <section id="parameters">
                 <div id="sunrise">
                     <p class="value"></p>
-                    <p class="icon">
-                        <span class="stacked">
-                            <i class="fa-solid fa-mountain" ></i>
-                            <i class="fa-regular fa-sun "></i>
-                        </span>
-                        Sunrise</p>
+                    <p class="icon"><i class="wi wi-sunrise"></i>Sunrise</p>
                 </div>
                 <div id="sunset">
                     <p class="value"></p>
                     <p class="icon">
-                        <span class="stacked">
-                            <i class="fa-solid fa-mountain" ></i>
-                            <i class="fa-regular fa-sun "></i>
-                        </span>
-                        Sunset</p>
+                        <i class="wi wi-sunset"></i>Sunset</p>
                 </div>
                 <div id="cloud-coverage">
                     <p class="value"></p>
-                    <p class="icon"><i class="fa-solid fa-cloud"></i>
+                    <p class="icon"><i class="wi wi-cloud"></i>
                         Cloud Coverage</p>
                 </div>
                 <div id="wind">
                     <p class="value"></p>
-                    <p class="icon"><i class="fa-solid fa-wind"></i>
+                    <p class="icon"><i class="wi wi-strong-wind"></i>
                         Wind</p>
                 </div>
                 <div id="precipitation">
                     <p class="value"></p>
-                    <p class="icon"><i class="fa-solid fa-cloud-rain"></i>
+                    <p class="icon"><i class="wi wi-sprinkle"></i>
                         PRECP</p>
                 </div>
                 <div id="humidity">
                     <p class="value"></p>
-                    <p class="icon"><i class="fa-solid fa-droplet"></i>
+                    <p class="icon"><i class="wi wi-humidity"></i>
                         Humidity</p>
                 </div>
             </section>

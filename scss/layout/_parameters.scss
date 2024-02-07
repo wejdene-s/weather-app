@@ -18,22 +18,5 @@
 
         
     }
-    #sunrise, #sunset{
-        .icon{
-            .stacked{
-                position: relative;
-                .fa-sun{
-                    position: absolute;
-                    left: 20%;
-                    top: 5%;
-                    font-size: 0.6rem;
 
-                }
-                .fa-mountain{
-                    z-index: 9999;
-                    
-                }
-            }
-        }
-    }
 }
