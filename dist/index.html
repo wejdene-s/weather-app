@@ -15,15 +15,13 @@
     <link rel="stylesheet" href="css/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer src="js/dataFunctions.js" type="module"></script>
-
-
+    <script defer src="js/main.js" type="module"></script>
 </head>
 <body>
     <header id="search" class="fade-in">
         <form id="search-form">
-            <input type="text" class="fade" name="search" aria-label="Enter a city name" placeholder="Enter a city name">
-            <button>
+            <input type="text" class="" name="search" aria-label="Enter a city name" placeholder="Enter a city name">
+            <button type="button" id="search-button">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>
@@ -33,10 +31,11 @@
             <section id="current-weather">
                 <div id="location">
                     <i class="fa-solid fa-location-dot"></i>
-                    <span></span>
+                    <span id="city"></span>
                 </div>
                 <div id="temperature"></div>
-                <div id="description"></div>
+                <div id="description">
+                </div>
             </section>
             <section id="parameters">
                 <div id="sunrise">
