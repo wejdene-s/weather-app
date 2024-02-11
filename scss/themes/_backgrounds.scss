@@ -1,0 +1,23 @@
+.sunny{
+    @include backgroundImg("../../dist/img/sunny.jpg");
+}
+
+.snowy{
+    @include backgroundImg("../../dist/img/snow.jpg");
+}
+
+.rainy{
+    @include backgroundImg("../../dist/img/rainy.jpg");
+}
+
+.foggy{
+    @include backgroundImg("../../dist/img/foggy.jpg");
+}
+
+.clear-sky-night{
+    @include backgroundImg("../../dist/img/clear-night.jpg");
+}
+
+.cloudy{
+    @include backgroundImg("../../dist/img/cloudy.jpg");
+}

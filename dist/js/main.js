@@ -1,5 +1,5 @@
 import {extractCurrentWeather,
-    extractTime,
+    extractDate,
     currentWeatherObj
 }from './dataFunctions.js';
 
@@ -8,13 +8,13 @@ const initApp =() =>{
 
     const inputElement = $('input');
 
-    const handleSearch = () => {
+    const  handleSearch = async() => {
         inputElement.fadeToggle();
         const city = inputElement.val();
-        if(city){
-            displayCurrentWeather(city);
+        if(city && city !== currentWeatherObj.currentWeather.cityName){
+            await displayCurrentWeather(city);
             displayDate(city);
-            
+            setBackgroundImg();
         }
     }
 
@@ -26,8 +26,12 @@ const initApp =() =>{
             handleSearch();
         }
     })
-    
+
+
+
 }
+
+
 $(document).ready(initApp);
 
 
@@ -54,8 +58,43 @@ const addIcon = (iconClass) => {
 }
 
 const displayDate = async(city) => {
-    await extractTime(city);
+    await extractDate(city);
     const arr = currentWeatherObj.getTime().split(",");
     $("#date").text(arr[0]);
+}
+
+const setBackgroundImg = () => {
+    const desCode = Number(currentWeatherObj.currentWeather.descriptionCode);
+    const iconCode = currentWeatherObj.currentWeather.iconCode;
+
+    switch (desCode) {
+        case (200<=desCode && desCode<=500 || desCode === 900) :
+            addImg("rainy");
+            break;
+        case (600<=desCode && desCode<=623) :
+            addImg("snowy");
+            break;
+        case (700<= desCode && desCode<=751) :
+            addImg("foggy");
+            break;
+        case (800<=desCode && desCode<=802) :
+            if(iconCode.charAt(iconCode.length - 1) === 'd'){
+                addImg("sunny");
+            }else{
+                addImg("clear-night");
+            }
+            break;
+        case 804 || 803:
+            addImg("cloudy");
+            break;
+        default:
+            break;
+    }
+}
+
+const addImg = (str) =>{
+    $('html').addClass(str);
+    $('body').addClass(str);
+
 }
 

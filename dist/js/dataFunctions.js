@@ -19,8 +19,6 @@ const getWeatherData = async(city) => {
         // Handle general errors
         console.error('Error:', error);
     }
-
-
 }
 export const extractCurrentWeather = async(city) => {
     const response = await getWeatherData(city);
@@ -29,7 +27,9 @@ export const extractCurrentWeather = async(city) => {
     currentWeather.cityName = response.city_name;
     currentWeather.temperature = Math.round(response.data[0].temp);
     currentWeather.description = response.data[0].weather.description;
-    currentWeather.iconClass = getIconClass(response.data[0].weather.icon);
+    currentWeather.descriptionCode = response.data[0].weather.code;
+    currentWeather.iconCode = response.data[0].weather.icon;
+    currentWeather.iconClass = getIconClass(currentWeather.iconCode);
     currentWeatherObj.setCurrentWeather(currentWeather);
 
 }
@@ -68,11 +68,10 @@ const correspondantClass = (value, code) => {
     }else return value[1];
 }
 
-export const extractTime = async(city) => {
+export const extractDate = async(city) => {
     const weatherData = await getWeatherData(city);
-    const unixTimestampTime = weatherData.data[0].ts;
-    const correspondantTime = convertTime(unixTimestampTime);
-    currentWeatherObj.setTime(correspondantTime);
+    const date = weatherData.data[0].valid_date;
+    currentWeatherObj.setTime(date);
 }
 
 const convertTime = (unixTimestampTime) => {

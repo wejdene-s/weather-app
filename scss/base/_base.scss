@@ -8,12 +8,12 @@ html{
     font-family: 'Patrick Hand', cursive;
     font-size: 1.3rem;
     color:$fontColor;
-    background-color: cadetblue;
-    @include backgroundImg("../../dist/img/clear-night.jpg");
+    background-color: #8d99ae;
+    /* @include backgroundImg("../../dist/img/cloudy-night.jpg"); */
 }
 
 body{
-    @include backgroundImg("../../dist/img/clear-night.jpg");
+    /* @include backgroundImg("../../dist/img/cloudy-night.jpg"); */
     min-height: 100vh;
     width: 90%;
     margin: 0 auto;
