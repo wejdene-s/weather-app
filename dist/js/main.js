@@ -1,22 +1,46 @@
-import {getCurrentWeather} from './dataFunctions.js';
+import {extractCurrentWeather,
+    extractTime,
+    currentWeatherObj
+}from './dataFunctions.js';
+
 
 const initApp =() =>{
-    $('#search-button').click(setCurrentWeather);
-/*     setParameters();
-    setBackgroundImg(); */
 
+    const inputElement = $('input');
+
+    const handleSearch = () => {
+        inputElement.fadeToggle();
+        const city = inputElement.val();
+        if(city){
+            displayCurrentWeather(city);
+            displayDate(city);
+            
+        }
+    }
+
+    $('#search-button').click(handleSearch);
+
+    inputElement.keydown(function(event) {
+        if (event.key === 'Enter' || event.keyCode === 13){
+            event.preventDefault();
+            handleSearch();
+        }
+    })
+    
 }
 $(document).ready(initApp);
 
 
-const setCurrentWeather = async() => {
-    const city = $("input").val();
-    const currentWeatherObj = await getCurrentWeather(city);
-    $("#city").text(currentWeatherObj.cityName);
-    $("#temperature").text(currentWeatherObj.temperature);
-    $("#description").text(currentWeatherObj.description);
-    addIcon(currentWeatherObj.iconClass);
+const displayCurrentWeather = async(city) => {
+    
+    await extractCurrentWeather(city);
+    $("#city").text(currentWeatherObj.getCurrentWeather().cityName);
+    $("#temperature").text(currentWeatherObj.getCurrentWeather().temperature);
+    $("#description").text(currentWeatherObj.getCurrentWeather().description);
+    addIcon(currentWeatherObj.getCurrentWeather().iconClass);
+
 }
+
 
 const addIcon = (iconClass) => {
     const icon = document.createElement("i");
@@ -28,3 +52,10 @@ const addIcon = (iconClass) => {
     $("#description").append(span);
 
 }
+
+const displayDate = async(city) => {
+    await extractTime(city);
+    const arr = currentWeatherObj.getTime().split(",");
+    $("#date").text(arr[0]);
+}
+

@@ -10,6 +10,9 @@ button{
     @include maxw(500px){
         left: 80%;
     }
+/*     @include minw(500px){
+        left: 90%;
+    } */
 }
 button:hover{
     cursor:pointer;

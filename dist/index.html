@@ -19,8 +19,8 @@
 </head>
 <body>
     <header id="search" class="fade-in">
-        <form id="search-form">
-            <input type="text" class="" name="search" aria-label="Enter a city name" placeholder="Enter a city name">
+        <form id="search-form" type="button">
+            <input type="text" class="display" name="search" aria-label="Enter a city name" autocomplete="off" spellcheck="false" placeholder="Enter a city name">
             <button type="button" id="search-button">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
@@ -34,8 +34,8 @@
                     <span id="city"></span>
                 </div>
                 <div id="temperature"></div>
-                <div id="description">
-                </div>
+                <div id="description"></div>
+                <div id="date"></div>
             </section>
             <section id="parameters">
                 <div id="sunrise">
@@ -60,7 +60,7 @@
                 <div id="precipitation">
                     <p class="value"></p>
                     <p class="icon"><i class="wi wi-sprinkle"></i>
-                        PRECP</p>
+                        Precipitation</p>
                 </div>
                 <div id="humidity">
                     <p class="value"></p>

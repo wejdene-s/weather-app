@@ -1,8 +1,11 @@
 import {API_KEY} from './config.js';
+import weatherData from './weatherData.js';
+
+export const currentWeatherObj = new weatherData();
 
 const getWeatherData = async(city) => {
     try {
-/*         const response = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${API_KEY}`); */
+        const response = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${API_KEY}`);
 
         if (response.status === 429) {
             console.log('API rate limit exceeded. Retry after some time.');
@@ -16,76 +19,19 @@ const getWeatherData = async(city) => {
         // Handle general errors
         console.error('Error:', error);
     }
-}
-export const getCurrentWeather = async(city) => {
-    const weatherDataObj = await getWeatherData(city);
-    const currentWeatherObj = {};
 
-/*     const currentWeatherObj = {
-    let lat ;
-    let lon;
-    navigator.geolocation.getCurrentPosition((position) => {
-    lat = position.coords.latitude;
-    lon=position.coords.longitude;
-    })
-        "data":[  
-            {  
-                "valid_date":"2017-04-01",
-                "ts":1503954000,
-                "datetime":"2017-04-01",
-                "wind_gust_spd":16.7,
-                "wind_spd":6.4,
-                "wind_dir":45,
-                "wind_cdir":"NE",
-                "wind_cdir_full":"northeast",
-                "temp":25,
-                "max_temp":30,
-                "min_temp":26,
-                "high_temp":30,
-                "low_temp":24.5,
-                "app_max_temp":30.64,
-                "app_min_temp":23.64,
-                "pop":0,
-                "precip":0,
-                "snow":0,
-                "snow_depth":0,
-                "slp":1017,
-                "pres":1003.5,
-                "dewpt":17.8,
-                "rh":64.3,
-                "weather":{  
-                    "icon":"r03n",
-                    "code":"804",
-                    "description":"Overcast clouds"
-                },
-                "clouds_low":25,
-                "clouds_mid":100,
-                "clouds_hi":50,
-                "clouds":100,
-                "vis":10,
-                "max_dhi":178,
-                "uv":2,
-                "moon_phase":0.99,
-                "moon_phase_lunation":0.48,
-                "moonrise_ts":1530341260,
-                "moonset_ts":1530351260,
-                "sunrise_ts":1530321260,
-                "sunset_ts":1530391260
-            },
-        ],
-        "city_name":"Raleigh",
-        "lon":"-78.63861",
-        "timezone":"America\/New_York",
-        "lat":"35.7721",
-        "country_code":"US",
-        "state_code":"NC"
-        
-    }; */
-    currentWeatherObj.cityName = weatherDataObj.city_name;
-    currentWeatherObj.temperature = Math.round(weatherDataObj.data[0].temp);
-    currentWeatherObj.description = weatherDataObj.data[0].weather.description;
-    currentWeatherObj.iconClass = getIconClass(weatherDataObj.data[0].weather.icon);
-    return currentWeatherObj;
+
+}
+export const extractCurrentWeather = async(city) => {
+    const response = await getWeatherData(city);
+
+    const currentWeather = {};
+    currentWeather.cityName = response.city_name;
+    currentWeather.temperature = Math.round(response.data[0].temp);
+    currentWeather.description = response.data[0].weather.description;
+    currentWeather.iconClass = getIconClass(response.data[0].weather.icon);
+    currentWeatherObj.setCurrentWeather(currentWeather);
+
 }
 const getIconClass  = (iconCode) => {
     const iconClasses = {
@@ -116,9 +62,23 @@ const getIconClass  = (iconCode) => {
     }
 }
 const correspondantClass = (value, code) => {
+    //day or night
     if (value.length === 1 || code.charAt(code.length - 1) === 'd'){
         return value[0];
     }else return value[1];
+}
+
+export const extractTime = async(city) => {
+    const weatherData = await getWeatherData(city);
+    const unixTimestampTime = weatherData.data[0].ts;
+    const correspondantTime = convertTime(unixTimestampTime);
+    currentWeatherObj.setTime(correspondantTime);
+}
+
+const convertTime = (unixTimestampTime) => {
+    const time = new Date(unixTimestampTime * 1000);
+    const humanReadableTime = time.toLocaleString();
+    return humanReadableTime;
 }
 
 
