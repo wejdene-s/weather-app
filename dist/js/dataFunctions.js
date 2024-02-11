@@ -20,13 +20,14 @@ const getWeatherData = async(city) => {
         console.error('Error:', error);
     }
 
+
 }
 export const extractCurrentWeather = async(city) => {
     const response = await getWeatherData(city);
 
     const currentWeather = {};
     currentWeather.cityName = response.city_name;
-    currentWeather.temperature = Math.round(response.data[0].temp);
+    currentWeather.temperature = `${Math.round(response.data[0].temp)}°`;
     currentWeather.description = response.data[0].weather.description;
     currentWeather.descriptionCode = response.data[0].weather.code;
     currentWeather.iconCode = response.data[0].weather.icon;
