@@ -1,5 +1,6 @@
 import {extractCurrentWeather,
     extractDate,
+    extractWeatherParameters,
     currentWeatherObj
 }from './dataFunctions.js';
 
@@ -15,6 +16,7 @@ const initApp =() =>{
             await displayCurrentWeather(city);
             displayDate(city);
             setBackgroundImg();
+            displayParameters(city);
         }
     }
 
@@ -26,8 +28,6 @@ const initApp =() =>{
             handleSearch();
         }
     })
-
-
 
 }
 
@@ -98,3 +98,13 @@ const addImg = (str) =>{
 
 }
 
+const displayParameters = async(city) => {
+    await extractWeatherParameters(city);
+    const parameters = currentWeatherObj.getWeatherparameters();
+    $('#sunrise-value').text(parameters.sunrise);
+    $('#sunset-value').text(parameters.sunset);
+    $('#cloud-coverage-value').text(parameters.cloudCoverage);
+    $('#wind-value').text(parameters.wind);
+    $('#precip-value').text(parameters.precipitation);
+    $('#humidity-value').text(parameters.humidity);
+}

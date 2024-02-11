@@ -19,6 +19,7 @@ const getWeatherData = async(city) => {
         // Handle general errors
         console.error('Error:', error);
     }
+
 }
 export const extractCurrentWeather = async(city) => {
     const response = await getWeatherData(city);
@@ -80,6 +81,24 @@ const convertTime = (unixTimestampTime) => {
     return humanReadableTime;
 }
 
+export const extractWeatherParameters = async(city) => {
+    const weatherData = await getWeatherData(city);
+    const weatherParameters = {};
+    const sunriseDate = convertTime(weatherData.data[0].sunrise_ts);
+    weatherParameters.sunrise = sunriseDate.split(",")[1];
+    const sunsetDate = convertTime(weatherData.data[0].sunset_ts);
+    weatherParameters.sunset = sunsetDate.split(",")[1];
+    weatherParameters.cloudCoverage = `${weatherData.data[0].clouds}%`;
+    weatherParameters.wind= convertToKmh(weatherData.data[0].wind_spd);
+    weatherParameters.precipitation= `${weatherData.data[0].pop}%`;
+    weatherParameters.humidity= `${weatherData.data[0].rh}%`;
+    currentWeatherObj.setWeatherParameters(weatherParameters);
+}
+
+
+const convertToKmh = (speed) => {
+    return `${(speed * 3600)/1000}%`;
+}
 
 
 
