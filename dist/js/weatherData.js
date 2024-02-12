@@ -3,7 +3,7 @@ export default class weatherData{
         this.currentWeather ={};
         this.time="";
         this.weatherParameters ={};
-        this.dailyForecast = {};
+        this.dailyForecast = [];
     }
 
     setCurrentWeather (currentWeather){
@@ -31,7 +31,7 @@ export default class weatherData{
     }
 
     setDailyForecast (dailyForecast){
-        this.dailyForecast = dailyForecast;
+        this.dailyForecast.push(dailyForecast);
     }
     
     getDailyForecast (){

@@ -20,11 +20,17 @@ const getWeatherData = async(city) => {
         console.error('Error:', error);
     }
 
+}
+export const extractData = async(city) => {
+    const response = await getWeatherData(city);
+    extractCurrentWeather(response);
+    extractDate(response);
+    extractWeatherParameters(response);
+    extractDailyForecast(response);
 
 }
-export const extractCurrentWeather = async(city) => {
-    const response = await getWeatherData(city);
 
+export const extractCurrentWeather = (response) => {
     const currentWeather = {};
     currentWeather.cityName = response.city_name;
     currentWeather.temperature = `${Math.round(response.data[0].temp)}°`;
@@ -70,8 +76,7 @@ const correspondantClass = (value, code) => {
     }else return value[1];
 }
 
-export const extractDate = async(city) => {
-    const weatherData = await getWeatherData(city);
+export const extractDate = (weatherData) => {
     const date = weatherData.data[0].valid_date;
     currentWeatherObj.setTime(date);
 }
@@ -82,8 +87,7 @@ const convertTime = (unixTimestampTime) => {
     return humanReadableTime;
 }
 
-export const extractWeatherParameters = async(city) => {
-    const weatherData = await getWeatherData(city);
+export const extractWeatherParameters = (weatherData) => {
     const weatherParameters = {};
     const sunriseDate = convertTime(weatherData.data[0].sunrise_ts);
     weatherParameters.sunrise = sunriseDate.split(",")[1];
@@ -100,6 +104,29 @@ export const extractWeatherParameters = async(city) => {
 const convertToKmh = (speed) => {
     return `${(speed * 3600)/1000}%`;
 }
+
+
+const extractDailyForecast = (weatherData) => {
+    for (let i =1 ; i<7 ; i++ ){
+        const obj = {};
+        obj.day = getWeekDay(currentWeatherObj.getTime()); 
+        obj.icon = weatherData.data[i].weather.icon;
+        obj.iconClass = getIconClass(obj.icon);
+        obj.highTemp = `${weatherData.data[i].high_temp}`;
+        obj.lowTemp = `${weatherData.data[i].low_temp}`;
+        currentWeatherObj.setDailyForecast(obj);
+    }
+
+
+}
+
+const getWeekDay = (str) => {
+    const date = new Date(str);
+    const daysOfWeek = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+    return daysOfWeek[date.getDay()];
+}
+
+
 
 
 
