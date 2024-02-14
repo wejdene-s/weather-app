@@ -13,12 +13,15 @@
     }
     #daily-forecast-data{
         text-align: center;
-        margin: 1rem;
+        /* margin-inline: 1rem; */
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        @include maxw(576px){
+        @include maxw(786px){
             overflow-x: scroll;
-            font-size: 0.7rem;
+            
+        }
+        @include maxw(576px){
+            font-size: 0.9rem;
         }
         div{
             margin: 0.5rem;

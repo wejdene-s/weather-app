@@ -10,18 +10,39 @@ const initApp =() =>{
 
     const  handleSearch = async() => {
         inputElement.fadeToggle();
-        const city = inputElement.val();
-        if(city && city !== currentWeatherObj.currentWeather.cityName){
-            await extractData(city);
-            displayCurrentWeather();
-            displayDate();
-            setBackgroundImg();
-            displayParameters();
-            displayDailyForecast();
+        let city = inputElement.val();
+        if (city){
+            city = city[0].toUpperCase() + city.slice(1);
+            if (city !== currentWeatherObj.currentWeather.cityName){
+                try {
+                    await extractData(city);
+                    displayCurrentWeather();
+                    displayDate();
+                    setBackgroundImg();
+                    displayParameters();
+                    displayDailyForecast();
+                    resetInput();
+                    
+                } catch(error){
+                    console.log("Error during data extraction:", error);
+
+                } 
+                    
+
+            }
+
+            
         }
     }
 
+    const resetInput = () => {
+        $('input').val("");
+    
+    }
+    
+
     $('#search-button').click(handleSearch);
+
 
     inputElement.keydown(function(event) {
         if (event.key === 'Enter' || event.keyCode === 13){
@@ -31,7 +52,6 @@ const initApp =() =>{
     })
 
 }
-
 
 $(document).ready(initApp);
 
@@ -66,7 +86,7 @@ const setBackgroundImg = () => {
     const iconCode = currentWeatherObj.currentWeather.iconCode;
 
     switch (true) {
-        case (200<=desCode && desCode<=500 || desCode === 900) :
+        case (200<=desCode && desCode<=522 || desCode === 900) :
             addImg("rainy");
             break;
         case (600<=desCode && desCode<=623) :
@@ -108,26 +128,42 @@ const displayParameters = () => {
 
 
 const displayDailyForecast = () =>{
-    currentWeatherObj.getDailyForecast().forEach(element => {
-        const div = document.createElement("div");
-        const day = document.createElement("p");
-        const icon = document.createElement("i");
-        const temp = document.createElement("p");
-        day.textContent = element.day;
-        icon.classList.add("wi");
-        icon.classList.add(`${element.iconClass}`);
-        temp.textContent = `${element.highTemp}°/${element.lowTemp}°`;
-        div.append(day);
-        div.append(icon);
-        div.append(temp);
     
-        $("#daily-forecast-data").append(div);
+    const dailyForecast = currentWeatherObj.getDailyForecast();
+    let i =0;
+    $("#daily-forecast-data").children().each(function(index,element) {
+        const day = $(element).find(".day");
+        const icon = $(element).find("i");
+        const temp = $(element).find(".high-low-temp");
 
+        day.text(dailyForecast.data[i].day);
+        icon.addClass("wi");
+        icon.addClass(`${dailyForecast.data[i].iconClass}`);
+        temp.text(`${dailyForecast.data[i].highTemp}°/${dailyForecast.data[i].lowTemp}°`);
+        i++;
         
-    });
-
-
+    })
+        
 }
+        
+/*         for (child of children){
+            day = children
+        } */
+/*         $("#daily-forecast-data").children().forEach(div => {
+            day = $("div > #day");
+            icon = $("div > icon");
+            temp = $("div > #high-low-temp ");
+
+            if (day.html() == "") {
+
+                div.append(day);
+                div.append(icon);
+                div.append(temp);
+    
+            }
+        })
+         */
+
 
 
 
