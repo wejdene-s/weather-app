@@ -4,7 +4,6 @@ export default class weatherData{
         this.time="";
         this.weatherParameters ={};
         this.dailyForecast = {};
-        this.status = false;
     }
 
     setCurrentWeather (currentWeather){
@@ -39,21 +38,5 @@ export default class weatherData{
         return this.dailyForecast;
     }
 
-    setStatus(str){
-        this.status = str;
-    }
-
-    getStatus (){
-        return this.status;
-    }
-
-    reset(){
-        this.currentWeather ={};
-        this.time="";
-        this.weatherParameters ={};
-        this.dailyForecast = [];
-        this.status = 'false';
-
-    }
 
 }

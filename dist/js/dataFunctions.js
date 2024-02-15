@@ -4,338 +4,24 @@ import weatherData from './weatherData.js';
 export const currentWeatherObj = new weatherData();
 
 const getWeatherData = async(city) => {
-    try {
+     try {
         const response = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${API_KEY}`);
 
         if (response.status === 429) {
             console.log('API rate limit exceeded. Retry after some time.');
         } else if (!response.ok) {
             console.log('HTTP error:', response.status);
-        } else {
+        }else{
             const data = await response.json();
             return data;
         }
     } catch (error) {
         // Handle general errors
-        console.error('Error:', error);
-    }
-/*     const response = {  
-        "data":[  
-            {  
-                "valid_date":"2017-04-01",
-                "ts":1503954000,
-                "datetime":"2017-04-01",
-                "wind_gust_spd":16.7,
-                "wind_spd":6.4,
-                "wind_dir":45,
-                "wind_cdir":"NE",
-                "wind_cdir_full":"northeast",
-                "temp":25,
-                "max_temp":30,
-                "min_temp":26,
-                "high_temp":30,
-                "low_temp":24.5,
-                "app_max_temp":30.64,
-                "app_min_temp":23.64,
-                "pop":0,
-                "precip":0,
-                "snow":0,
-                "snow_depth":0,
-                "slp":1017,
-                "pres":1003.5,
-                "dewpt":17.8,
-                "rh":64.3,
-                "weather":{  
-                    "icon":"r03n",
-                    "code":"804",
-                    "description":"Overcast clouds"
-                },
-                "clouds_low":25,
-                "clouds_mid":100,
-                "clouds_hi":50,
-                "clouds":100,
-                "vis":10,
-                "max_dhi":178,
-                "uv":2,
-                "moon_phase":0.99,
-                "moon_phase_lunation":0.48,
-                "moonrise_ts":1530341260,
-                "moonset_ts":1530351260,
-                "sunrise_ts":1530321260,
-                "sunset_ts":1530391260
-            },
-            {  
-                "valid_date":"2017-04-01",
-                "ts":1503954000,
-                "datetime":"2017-04-01",
-                "wind_gust_spd":16.7,
-                "wind_spd":6.4,
-                "wind_dir":45,
-                "wind_cdir":"NE",
-                "wind_cdir_full":"northeast",
-                "temp":25,
-                "max_temp":30,
-                "min_temp":26,
-                "high_temp":30,
-                "low_temp":24.5,
-                "app_max_temp":30.64,
-                "app_min_temp":23.64,
-                "pop":0,
-                "precip":0,
-                "snow":0,
-                "snow_depth":0,
-                "slp":1017,
-                "pres":1003.5,
-                "dewpt":17.8,
-                "rh":64.3,
-                "weather":{  
-                    "icon":"r03n",
-                    "code":"804",
-                    "description":"Overcast clouds"
-                },
-                "clouds_low":25,
-                "clouds_mid":100,
-                "clouds_hi":50,
-                "clouds":100,
-                "vis":10,
-                "max_dhi":178,
-                "uv":2,
-                "moon_phase":0.99,
-                "moon_phase_lunation":0.48,
-                "moonrise_ts":1530341260,
-                "moonset_ts":1530351260,
-                "sunrise_ts":1530321260,
-                "sunset_ts":1530391260
-            },
-            {  
-                "valid_date":"2017-04-01",
-                "ts":1503954000,
-                "datetime":"2017-04-01",
-                "wind_gust_spd":16.7,
-                "wind_spd":6.4,
-                "wind_dir":45,
-                "wind_cdir":"NE",
-                "wind_cdir_full":"northeast",
-                "temp":25,
-                "max_temp":30,
-                "min_temp":26,
-                "high_temp":30,
-                "low_temp":24.5,
-                "app_max_temp":30.64,
-                "app_min_temp":23.64,
-                "pop":0,
-                "precip":0,
-                "snow":0,
-                "snow_depth":0,
-                "slp":1017,
-                "pres":1003.5,
-                "dewpt":17.8,
-                "rh":64.3,
-                "weather":{  
-                    "icon":"r03n",
-                    "code":"804",
-                    "description":"Overcast clouds"
-                },
-                "clouds_low":25,
-                "clouds_mid":100,
-                "clouds_hi":50,
-                "clouds":100,
-                "vis":10,
-                "max_dhi":178,
-                "uv":2,
-                "moon_phase":0.99,
-                "moon_phase_lunation":0.48,
-                "moonrise_ts":1530341260,
-                "moonset_ts":1530351260,
-                "sunrise_ts":1530321260,
-                "sunset_ts":1530391260
-            },
-            {  
-                "valid_date":"2017-04-01",
-                "ts":1503954000,
-                "datetime":"2017-04-01",
-                "wind_gust_spd":16.7,
-                "wind_spd":6.4,
-                "wind_dir":45,
-                "wind_cdir":"NE",
-                "wind_cdir_full":"northeast",
-                "temp":25,
-                "max_temp":30,
-                "min_temp":26,
-                "high_temp":30,
-                "low_temp":24.5,
-                "app_max_temp":30.64,
-                "app_min_temp":23.64,
-                "pop":0,
-                "precip":0,
-                "snow":0,
-                "snow_depth":0,
-                "slp":1017,
-                "pres":1003.5,
-                "dewpt":17.8,
-                "rh":64.3,
-                "weather":{  
-                    "icon":"r03n",
-                    "code":"804",
-                    "description":"Overcast clouds"
-                },
-                "clouds_low":25,
-                "clouds_mid":100,
-                "clouds_hi":50,
-                "clouds":100,
-                "vis":10,
-                "max_dhi":178,
-                "uv":2,
-                "moon_phase":0.99,
-                "moon_phase_lunation":0.48,
-                "moonrise_ts":1530341260,
-                "moonset_ts":1530351260,
-                "sunrise_ts":1530321260,
-                "sunset_ts":1530391260
-            },
-            {  
-                "valid_date":"2017-04-01",
-                "ts":1503954000,
-                "datetime":"2017-04-01",
-                "wind_gust_spd":16.7,
-                "wind_spd":6.4,
-                "wind_dir":45,
-                "wind_cdir":"NE",
-                "wind_cdir_full":"northeast",
-                "temp":25,
-                "max_temp":30,
-                "min_temp":26,
-                "high_temp":30,
-                "low_temp":24.5,
-                "app_max_temp":30.64,
-                "app_min_temp":23.64,
-                "pop":0,
-                "precip":0,
-                "snow":0,
-                "snow_depth":0,
-                "slp":1017,
-                "pres":1003.5,
-                "dewpt":17.8,
-                "rh":64.3,
-                "weather":{  
-                    "icon":"r03n",
-                    "code":"804",
-                    "description":"Overcast clouds"
-                },
-                "clouds_low":25,
-                "clouds_mid":100,
-                "clouds_hi":50,
-                "clouds":100,
-                "vis":10,
-                "max_dhi":178,
-                "uv":2,
-                "moon_phase":0.99,
-                "moon_phase_lunation":0.48,
-                "moonrise_ts":1530341260,
-                "moonset_ts":1530351260,
-                "sunrise_ts":1530321260,
-                "sunset_ts":1530391260
-            },
-            {  
-                "valid_date":"2017-04-01",
-                "ts":1503954000,
-                "datetime":"2017-04-01",
-                "wind_gust_spd":16.7,
-                "wind_spd":6.4,
-                "wind_dir":45,
-                "wind_cdir":"NE",
-                "wind_cdir_full":"northeast",
-                "temp":25,
-                "max_temp":30,
-                "min_temp":26,
-                "high_temp":30,
-                "low_temp":24.5,
-                "app_max_temp":30.64,
-                "app_min_temp":23.64,
-                "pop":0,
-                "precip":0,
-                "snow":0,
-                "snow_depth":0,
-                "slp":1017,
-                "pres":1003.5,
-                "dewpt":17.8,
-                "rh":64.3,
-                "weather":{  
-                    "icon":"r03n",
-                    "code":"804",
-                    "description":"Overcast clouds"
-                },
-                "clouds_low":25,
-                "clouds_mid":100,
-                "clouds_hi":50,
-                "clouds":100,
-                "vis":10,
-                "max_dhi":178,
-                "uv":2,
-                "moon_phase":0.99,
-                "moon_phase_lunation":0.48,
-                "moonrise_ts":1530341260,
-                "moonset_ts":1530351260,
-                "sunrise_ts":1530321260,
-                "sunset_ts":1530391260
-            },
-            {  
-                "valid_date":"2017-04-01",
-                "ts":1503954000,
-                "datetime":"2017-04-01",
-                "wind_gust_spd":16.7,
-                "wind_spd":6.4,
-                "wind_dir":45,
-                "wind_cdir":"NE",
-                "wind_cdir_full":"northeast",
-                "temp":25,
-                "max_temp":30,
-                "min_temp":26,
-                "high_temp":30,
-                "low_temp":24.5,
-                "app_max_temp":30.64,
-                "app_min_temp":23.64,
-                "pop":0,
-                "precip":0,
-                "snow":0,
-                "snow_depth":0,
-                "slp":1017,
-                "pres":1003.5,
-                "dewpt":17.8,
-                "rh":64.3,
-                "weather":{  
-                    "icon":"r03n",
-                    "code":"804",
-                    "description":"Overcast clouds"
-                },
-                "clouds_low":25,
-                "clouds_mid":100,
-                "clouds_hi":50,
-                "clouds":100,
-                "vis":10,
-                "max_dhi":178,
-                "uv":2,
-                "moon_phase":0.99,
-                "moon_phase_lunation":0.48,
-                "moonrise_ts":1530341260,
-                "moonset_ts":1530351260,
-                "sunrise_ts":1530321260,
-                "sunset_ts":1530391260
-            },
-        ],
-        "city_name":"Raleigh",
-        "lon":"-78.63861",
-        "timezone":"America\/New_York",
-        "lat":"35.7721",
-        "country_code":"US",
-        "state_code":"NC"
-        }
-
-        return response; */
+        console.error('please, Enter a valid city name');
+    } 
 }
 export const extractData = async(city) => {
     const response = await getWeatherData(city);
-    console.log(response);
     extractCurrentWeather(response);
     extractDate(response);
     extractWeatherParameters(response);
@@ -393,18 +79,27 @@ export const extractDate = (weatherData) => {
     currentWeatherObj.setTime(date);
 }
 
-const convertTime = (unixTimestampTime) => {
+
+const convertTime = (unixTimestampTime, timeZone) => {
     const time = new Date(unixTimestampTime * 1000);
-    const humanReadableTime = time.toLocaleString();
+    const options = {
+        timeZone,
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: true
+    }
+    const humanReadableTime = time.toLocaleString('en-US',options);
     return humanReadableTime;
 }
 
 export const extractWeatherParameters = (weatherData) => {
     const weatherParameters = {};
-    const sunriseDate = convertTime(weatherData.data[0].sunrise_ts);
-    weatherParameters.sunrise = sunriseDate.split(",")[1];
-    const sunsetDate = convertTime(weatherData.data[0].sunset_ts);
-    weatherParameters.sunset = sunsetDate.split(",")[1];
+    const timezone = weatherData["timezone"];
+    const sunriseDate = convertTime(weatherData.data[0].sunrise_ts,timezone);
+    weatherParameters.sunrise = sunriseDate;
+    const sunsetDate = convertTime(weatherData.data[0].sunset_ts,timezone);
+    weatherParameters.sunset = sunsetDate;
     weatherParameters.cloudCoverage = `${weatherData.data[0].clouds}%`;
     weatherParameters.wind= convertToKmh(weatherData.data[0].wind_spd);
     weatherParameters.precipitation= `${weatherData.data[0].pop}%`;

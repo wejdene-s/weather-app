@@ -21,17 +21,16 @@ const initApp =() =>{
                     setBackgroundImg();
                     displayParameters();
                     displayDailyForecast();
-                    resetInput();
+                    
                     
                 } catch(error){
-                    console.log("Error during data extraction:", error);
+                    displayMessage();
 
                 } 
+                resetInput();
                     
-
             }
 
-            
         }
     }
 
@@ -54,6 +53,12 @@ const initApp =() =>{
 }
 
 $(document).ready(initApp);
+
+const displayMessage = () => {
+    $('input').css("display", "block");
+    $('input').attr("placeholder", "unvalid City Name");
+    
+}
 
 
 const displayCurrentWeather = () => {
@@ -146,23 +151,6 @@ const displayDailyForecast = () =>{
         
 }
         
-/*         for (child of children){
-            day = children
-        } */
-/*         $("#daily-forecast-data").children().forEach(div => {
-            day = $("div > #day");
-            icon = $("div > icon");
-            temp = $("div > #high-low-temp ");
-
-            if (day.html() == "") {
-
-                div.append(day);
-                div.append(icon);
-                div.append(temp);
-    
-            }
-        })
-         */
 
 
 
