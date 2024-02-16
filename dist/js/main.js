@@ -15,7 +15,9 @@ const initApp =() =>{
             city = city[0].toUpperCase() + city.slice(1);
             if (city !== currentWeatherObj.currentWeather.cityName){
                 try {
+                    $('#invalid-input').addClass("display");
                     await extractData(city);
+                    displaySections()
                     displayCurrentWeather();
                     displayDate();
                     setBackgroundImg();
@@ -54,9 +56,16 @@ const initApp =() =>{
 
 $(document).ready(initApp);
 
+const displaySections = () => {
+    $('#current-forecast').removeClass("display");
+    $('#daily-forecast').removeClass("display");
+    $('#opening').addClass("display");
+
+}
+
 const displayMessage = () => {
     $('input').css("display", "block");
-    $('input').attr("placeholder", "unvalid City Name");
+    $('#invalid-input').removeClass("display");
     
 }
 

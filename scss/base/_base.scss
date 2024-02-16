@@ -8,12 +8,12 @@ html{
     font-family: 'Patrick Hand', cursive;
     font-size: 1.3rem;
     color:$fontColor;
-    background-color: #8d99ae;
-    /* @include backgroundImg("../../dist/img/cloudy-night.jpg"); */
+    background-image: linear-gradient(to top, #6a85b6 0%, #8a9cbb 100%);
+    
 }
 
 body{
-    /* @include backgroundImg("../../dist/img/cloudy-night.jpg"); */
+    
     min-height: 100vh;
     width: 90%;
     margin: 0 auto;
@@ -27,6 +27,17 @@ body{
 }
 main{
     min-height: 100vh;
+    #opening{
+        /* border: 1px solid black; */
+        font-size: 3rem;
+        width: 70%;
+        letter-spacing: 0.1rem;
+        margin: 1rem;
+        @include maxw(576px){
+            font-size: 2rem;
+            
+        }
+    }
 
 }
 

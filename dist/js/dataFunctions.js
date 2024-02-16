@@ -19,6 +19,7 @@ const getWeatherData = async(city) => {
         // Handle general errors
         console.error('please, Enter a valid city name');
     } 
+
 }
 export const extractData = async(city) => {
     const response = await getWeatherData(city);

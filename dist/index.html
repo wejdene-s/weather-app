@@ -18,16 +18,18 @@
     <script defer src="js/main.js" type="module"></script>
 </head>
 <body>
-    <header id="search" class="fade-in">
+    <header id="search" >
         <form id="search-form" type="button">
             <input type="text" class="display" name="search" aria-label="Enter a city name" autocomplete="off" spellcheck="false" placeholder="Enter a city name">
             <button type="button" id="search-button">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>
+        <p id="invalid-input" class="display">invalid city name ⚠️</p>
     </header>
-    <main class="fade-in">
-        <div id="current-forecast" class="spaceBetween">
+    <main >
+        <h1 id="opening">Weather mastery at your fingertips! Access real-time forecasts for any destination.</h1>
+        <div id="current-forecast" class="spaceBetween display">
             <section id="current-weather">
                 <div id="location">
                     <i class="fa-solid fa-location-dot"></i>
@@ -69,7 +71,7 @@
                 </div>
             </section>
         </div>
-        <section id="daily-forecast">
+        <section id="daily-forecast" class="display">
             <p id="title">Daily Forecast</p>
             <div id="daily-forecast-data">
                 <div>

@@ -23,4 +23,14 @@
         }
 
     }
+    #invalid-input{
+        font-size: 25px;
+        margin-top: 0.5rem;
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        @include maxw(576px){
+            font-size: 20px;
+        }
+    }
 }
