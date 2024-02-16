@@ -8,53 +8,58 @@ const initApp =() =>{
 
     const inputElement = $('input');
 
-    const  handleSearch = async() => {
+    const serach = () => {
         inputElement.fadeToggle();
+        inputElement.focus();
         let city = inputElement.val();
         if (city){
             city = city[0].toUpperCase() + city.slice(1);
-            if (city !== currentWeatherObj.currentWeather.cityName){
-                try {
-                    $('#invalid-input').addClass("display");
-                    await extractData(city);
-                    displaySections()
-                    displayCurrentWeather();
-                    displayDate();
-                    setBackgroundImg();
-                    displayParameters();
-                    displayDailyForecast();
-                    
-                    
-                } catch(error){
-                    displayMessage();
-
-                } 
-                resetInput();
-                    
-            }
+            handleSearch(city);
+            resetInput();
+        
 
         }
     }
 
-    const resetInput = () => {
-        $('input').val("");
-    
-    }
-    
+    const  handleSearch = async() => {
+        if (city !== currentWeatherObj.currentWeather.cityName){
+            try {
+                $('#invalid-input').text('');
+                await extractData(city);
+                displaySections()
+                displayCurrentWeather();
+                displayDate();
+                setBackgroundImg();
+                displayParameters();
+                displayDailyForecast();
+            } catch(error){
+                displayMessage();
 
-    $('#search-button').click(handleSearch);
+            } 
+            
+                
+        }
+
+    }
+
+    $('#search-button').click(serach);
 
 
     inputElement.keydown(function(event) {
         if (event.key === 'Enter' || event.keyCode === 13){
             event.preventDefault();
-            handleSearch();
+            serach();
         }
     })
 
 }
 
 $(document).ready(initApp);
+
+const resetInput = () => {
+    $('input').val("");
+
+}
 
 const displaySections = () => {
     $('#current-forecast').removeClass("display");
@@ -65,7 +70,7 @@ const displaySections = () => {
 
 const displayMessage = () => {
     $('input').css("display", "block");
-    $('#invalid-input').removeClass("display");
+    $('#invalid-input').text("invalid city name ⚠️");
     
 }
 
@@ -119,13 +124,13 @@ const setBackgroundImg = () => {
         case (desCode === 803 || desCode === 804):
             addImg("cloudy");
             break;
-        default:
-            break;
     }
 }
 
 const addImg = (str) =>{
+    $('html').removeClass();
     $('html').addClass(str);
+    $('body').removeClass();
     $('body').addClass(str);
 
 }
@@ -149,8 +154,9 @@ const displayDailyForecast = () =>{
         const day = $(element).find(".day");
         const icon = $(element).find("i");
         const temp = $(element).find(".high-low-temp");
-
-        day.text(dailyForecast.data[i].day);
+        const weekDay = dailyForecast.data[i].day;
+        day.text(weekDay.slice(0,3));
+        day.attr('aria-label',`${weekDay}`);
         icon.addClass("wi");
         icon.addClass(`${dailyForecast.data[i].iconClass}`);
         temp.text(`${dailyForecast.data[i].highTemp}°/${dailyForecast.data[i].lowTemp}°`);

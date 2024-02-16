@@ -4,7 +4,7 @@ import weatherData from './weatherData.js';
 export const currentWeatherObj = new weatherData();
 
 const getWeatherData = async(city) => {
-     try {
+    try {
         const response = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${API_KEY}`);
 
         if (response.status === 429) {
@@ -17,9 +17,8 @@ const getWeatherData = async(city) => {
         }
     } catch (error) {
         // Handle general errors
-        console.error('please, Enter a valid city name');
+        throw error;
     } 
-
 }
 export const extractData = async(city) => {
     const response = await getWeatherData(city);
@@ -118,6 +117,7 @@ const extractDailyForecast = (weatherData) => {
     const data = [];
     for (let i =1 ; i<7 ; i++ ){
         const obj = {};
+
         obj.day = getWeekDay(weatherData.data[i].valid_date); 
         obj.icon = weatherData.data[i].weather.icon;
         obj.iconClass = getIconClass(obj.icon);
@@ -133,7 +133,7 @@ const extractDailyForecast = (weatherData) => {
 
 const getWeekDay = (str) => {
     const date = new Date(str);
-    const daysOfWeek = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+    const daysOfWeek = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
     return daysOfWeek[date.getDay()];
 }
 

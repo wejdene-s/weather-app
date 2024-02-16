@@ -19,92 +19,92 @@
 </head>
 <body>
     <header id="search" >
-        <form id="search-form" type="button">
-            <input type="text" class="display" name="search" aria-label="Enter a city name" autocomplete="off" spellcheck="false" placeholder="Enter a city name">
-            <button type="button" id="search-button">
+        <form id="search-form" type="button" tabindex="-1">
+            <input type="text" class="display" name="search"  autocomplete="off" spellcheck="false" placeholder="Enter a city name" autofocus>
+            <button aria-label="search for a city" type="button" id="search-button">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>
-        <p id="invalid-input" class="display">invalid city name ⚠️</p>
+        <p id="invalid-input" ></p>
     </header>
     <main >
-        <h1 id="opening">Weather mastery at your fingertips! Access real-time forecasts for any destination.</h1>
-        <div id="current-forecast" class="spaceBetween display">
-            <section id="current-weather">
-                <div id="location">
+        <h1 id="opening" tabindex="0">Weather mastery at your fingertips! Access real-time forecasts for any destination.</h1>
+        <section id="current-forecast" class="spaceBetween display" >
+            <section id="current-weather" tabindex="0" aria-label="current weather">
+                <div id="location"  tabindex="0">
                     <i class="fa-solid fa-location-dot"></i>
                     <span id="city"></span>
                 </div>
-                <div id="temperature"></div>
-                <div id="description"></div>
-                <div id="date"></div>
+                <div id="temperature" tabindex="0"></div>
+                <div id="description" tabindex="0"></div>
+                <div id="date" tabindex="0"></div>
             </section>
-            <section id="parameters">
-                <div id="sunrise">
+            <section id="parameters" tabindex="0">
+                <div id="sunrise" tabindex="0">
                     <p id="sunrise-value"></p>
                     <p class="icon"><i class="wi wi-sunrise"></i>Sunrise</p>
                 </div>
-                <div id="sunset">
+                <div id="sunset" tabindex="0">
                     <p id="sunset-value"></p>
                     <p class="icon">
                         <i class="wi wi-sunset"></i>Sunset</p>
                 </div>
-                <div id="cloud-coverage">
+                <div id="cloud-coverage" tabindex="0">
                     <p id="cloud-coverage-value"></p>
                     <p class="icon"><i class="wi wi-cloud"></i>
                         Cloud Coverage</p>
                 </div>
-                <div id="wind">
+                <div id="wind" tabindex="0">
                     <p id="wind-value"></p>
                     <p class="icon"><i class="wi wi-strong-wind"></i>
                         Wind</p>
                 </div>
-                <div id="precipitation">
+                <div id="precipitation" tabindex="0">
                     <p id="precip-value"></p>
                     <p class="icon"><i class="wi wi-sprinkle"></i>
-                        Precip</p>
+                        <abbr title="precipitation" aria-label="precipitation">Precip</abbr></p>
                 </div>
-                <div id="humidity">
+                <div id="humidity" tabindex="0">
                     <p id="humidity-value"></p>
                     <p class="icon"><i class="wi wi-humidity"></i>
                         Humidity</p>
                 </div>
             </section>
-        </div>
-        <section id="daily-forecast" class="display">
-            <p id="title">Daily Forecast</p>
-            <div id="daily-forecast-data">
-                <div>
+        </section>
+        <section id="daily-forecast" class="display" tabindex="0" aria-label="daily-forecast">
+            <h2 id="title" tabindex="0">Daily Forecast</h2>
+            <section id="daily-forecast-data">
+                <div tabindex="0">
                     <p class="day"></p>
                     <i></i>
                     <p class="high-low-temp"></p>
                 </div>
-                <div>
+                <div tabindex="0">
                     <p class="day"></p>
                     <i></i>
                     <p class="high-low-temp"></p>
                 </div>
-                <div>
+                <div tabindex="0">
                     <p class="day"></p>
                     <i></i>
                     <p class="high-low-temp"></p>
                 </div>
-                <div>
+                <div tabindex="0">
                     <p class="day"></p>
                     <i></i>
                     <p class="high-low-temp"></p>
                 </div>
-                <div>
+                <div tabindex="0">
                     <p class="day"></p>
                     <i></i>
                     <p class="high-low-temp"></p>
                 </div>
-                <div>
+                <div tabindex="0">
                     <p class="day"></p>
                     <i></i>
                     <p class="high-low-temp"></p>
                 </div>
-            </div>
+            </section>
         </section>
     </main>
 </body>

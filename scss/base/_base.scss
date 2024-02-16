@@ -23,12 +23,12 @@ body{
         width: 700px;
     }
     border-radius: $border;
+    overflow-x: hidden;
 
 }
 main{
     min-height: 100vh;
     #opening{
-        /* border: 1px solid black; */
         font-size: 3rem;
         width: 70%;
         letter-spacing: 0.1rem;

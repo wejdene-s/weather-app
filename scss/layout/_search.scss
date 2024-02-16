@@ -2,15 +2,17 @@
     border-radius: $border;
     padding-bottom: 1rem;
     #search-form{
-        width: 90%;
         margin: 0 auto;
         padding: 1rem;
+        position: relative;
+        top: 1rem;
         @include maxw(576px){
             width: 100%;
         }
         input{
             font-size: 1rem;
             position: absolute;
+            top: 15%;
             width: 80%;
             border-radius: $border;
             padding: 0.5rem;
@@ -25,7 +27,7 @@
     }
     #invalid-input{
         font-size: 25px;
-        margin-top: 0.5rem;
+        margin-top: 1rem;
         width: 100%;
         text-align: center;
         position: absolute;
