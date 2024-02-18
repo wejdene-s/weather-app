@@ -13,37 +13,45 @@ const initApp =() =>{
         inputElement.focus();
         let city = inputElement.val();
         if (city){
-            city = city[0].toUpperCase() + city.slice(1);
+            city = capitalizeFirstLetter(city);
             handleSearch(city);
-            resetInput();
-        
-
         }
     }
 
-    const  handleSearch = async() => {
+    const  handleSearch = async(city) => {
         if (city !== currentWeatherObj.currentWeather.cityName){
             try {
-                $('#invalid-input').text('');
-                await extractData(city);
-                displaySections()
-                displayCurrentWeather();
-                displayDate();
-                setBackgroundImg();
-                displayParameters();
-                displayDailyForecast();
+                resetErrorMessage();
+                resetInput(); 
+                await extractAndDisplay(city);
             } catch(error){
                 displayMessage();
 
-            } 
-            
-                
+            }   
         }
-
     }
 
-    $('#search-button').click(serach);
+    const capitalizeFirstLetter = (city) => {
+        return city[0].toUpperCase() + city.slice(1);
+    }
 
+    const resetErrorMessage = () => {
+        $('#invalid-input').text('');
+    }
+
+    const extractAndDisplay = async(city) => {
+        await extractData(city);
+        displaySections()
+        displayCurrentWeather();
+        displayDate();
+        setBackgroundImg();
+        displayParameters();
+        displayDailyForecast();
+    }
+    const resetInput = () => {
+        $('input').val("");
+    }
+    $('#search-button').click(serach);
 
     inputElement.keydown(function(event) {
         if (event.key === 'Enter' || event.keyCode === 13){
@@ -56,10 +64,7 @@ const initApp =() =>{
 
 $(document).ready(initApp);
 
-const resetInput = () => {
-    $('input').val("");
 
-}
 
 const displaySections = () => {
     $('#current-forecast').removeClass("display");
@@ -116,6 +121,7 @@ const setBackgroundImg = () => {
             break;
         case (desCode>=800 && desCode<=802) :
             if(iconCode.charAt(iconCode.length - 1) === 'd'){
+                
                 addImg("sunny");
             }else{
                 addImg("clear-night");

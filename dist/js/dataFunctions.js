@@ -5,7 +5,9 @@ export const currentWeatherObj = new weatherData();
 
 const getWeatherData = async(city) => {
     try {
-        const response = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${API_KEY}`);
+        const response = await fetch(`http://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${API_KEY}`,{
+            method : 'GET'
+        });
 
         if (response.status === 429) {
             console.log('API rate limit exceeded. Retry after some time.');
