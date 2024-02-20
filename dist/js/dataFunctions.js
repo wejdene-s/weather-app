@@ -111,7 +111,7 @@ export const extractWeatherParameters = (weatherData) => {
 
 
 const convertToKmh = (speed) => {
-    return `${(speed * 3600)/1000}%`;
+    return `${Math.round((speed * 3600)/1000)}%`;
 }
 
 
